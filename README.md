@@ -17,6 +17,7 @@
 * [Volumes](#volumes)
 * [Exposing Ports](#exposing-ports)
 * [Best Practices](#best-practices)
+* [Docker-Compose](#docker-compose)
 * [Security](#security)
 * [Tips](#tips)
 * [Contributing](#contributing)
@@ -230,29 +231,6 @@ Images are just [templates for docker containers](https://docs.docker.com/engine
 
 * [`docker history`](https://docs.docker.com/engine/reference/commandline/history) shows history of image.
 * [`docker tag`](https://docs.docker.com/engine/reference/commandline/tag) tags an image to a name (local or registry).
-
-## Checking Docker Version 
-
-It is very important that you always know the current version of Docker you are currently running on at any point in time.This is very helpful because you get to know what features are compatible with what you have running. This is also important because you know what containers to run from the docker store when you are trying to get template containers. That said let see how to know what version of docker we have running currently
-
-* ['docker version'](https://docs.docker.com/engine/reference/commandline/version/)   check what version of docker you have running
-
-```bash
-# Get the server version
-docker version --format '{{.Server.Version}}'
-```
-
-In Docker 1.8.0 and higher, you can also dump the raw JSON data:
-
-```bash
-docker version --format '{{json .}}'
-```
-
-will provide the output in JSON format:
-
-```json
-{"Client":{"Version":"1.8.0","ApiVersion":"1.20","GitCommit":"f5bae0a","GoVersion":"go1.4.2","Os":"linux","Arch":"am"}
-```
 
 ### Cleaning up
 
@@ -508,6 +486,24 @@ This is where general Docker best practices and war stories go:
 * There's also a best practices [blog post](http://developers.lyst.com/devops/2014/12/08/docker/) from Lyst.
 * [Building a Development Environment With Docker](https://tersesystems.com/2013/11/20/building-a-development-environment-with-docker/)
 * [Discourse in a Docker Container](https://samsaffron.com/archive/2013/11/07/discourse-in-a-docker-container)
+
+## Docker-Compose
+
+Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration. To learn more about all the features of Compose, see the [list of features](https://docs.docker.com/compose/overview/#features).
+
+By using the following command you can start up your application:
+
+```
+docker-compose -f <docker-compose-file> up
+```
+
+You can also run docker-compose in detached mode using -d flag, then you can stop it whenever needed by the following command:
+
+```
+docker-compose stop
+```
+
+You can bring everything down, removing the containers entirely, with the down command. Pass `--volumes` to also remove the data volume.
 
 ## Security
 
